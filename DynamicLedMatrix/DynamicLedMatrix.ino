@@ -1,35 +1,19 @@
-#include <Arduino_LSM6DSOX.h>
+#include <Arduino.h>
 
-void setup() {
-  if (!IMU.begin()) {
-    Serial.println("Failed to initialize IMU!");
-    while (1);
-  }
+#include "TempReader.h"
+
+TempReader tempReader = TempReader();
+
+void setup(void) {
+  tempReader.begin();
 }
 
 void loop() {
-  // if (IMU.temperatureAvailable())
-  // {
-  //   int temperature_deg = 0;
-  //   IMU.readTemperature(temperature_deg);
+  tempReader.update();
 
-  //   Serial.print("LSM6DSOX Temperature = ");
-  //   Serial.print(temperature_deg);
-  //   Serial.println(" °C");
-  // }
-
-  float x, y, z;
-
-  if (IMU.gyroscopeAvailable()) {
-    IMU.readGyroscope(x, y, z);
-    Serial.print("x: ");
-    Serial.print(x);
-    Serial.print(", y: ");
-    Serial.print(y);
-    Serial.print(", z: ");
-    Serial.println(z);
-  }
-
+  Serial.print("Sourrounding Temperature = ");
+  Serial.print(tempReader.temp);
+  Serial.println(" °C");
 
   delay(500);
 }
