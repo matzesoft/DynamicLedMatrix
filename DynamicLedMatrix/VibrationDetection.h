@@ -2,7 +2,7 @@
 #define VibrationDetection_h
 
 class VibrationDetection {
-  public:
+public:
   boolean activeVib = false;
 
   VibrationDetection();
@@ -10,7 +10,7 @@ class VibrationDetection {
   void begin();
   void update();
 
-  private:
+private:
   static constexpr float Threshold = 1.5;
 
   boolean accelerationsOverThreshold(float x, float y, float z);

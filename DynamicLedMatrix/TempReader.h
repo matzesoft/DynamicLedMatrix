@@ -2,7 +2,7 @@
 #define LedMatrix_h
 
 class TempReader {
-  public:
+public:
   static const int ErrorTempValue = -255;
   int temp = ErrorTempValue;
 
@@ -11,7 +11,7 @@ class TempReader {
   void begin();
   void update();
 
-  private:
+private:
   int internalToSourroundingTemp(int internalTemp);
 };
 

@@ -3,6 +3,7 @@
 #include "VibrationDetection.h"
 
 /* --- PUBLIC FUNCTIONS --- */
+
 VibrationDetection::VibrationDetection() {}
 
 void VibrationDetection::begin() {
