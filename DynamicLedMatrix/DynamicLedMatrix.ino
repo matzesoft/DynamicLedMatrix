@@ -18,6 +18,7 @@ void loop() {
   // Polling Loop
   unsigned long currentMillis = millis();
   if (currentMillis - lastPollingMillis >= pollingInterval) {
+    lastPollingMillis = currentMillis;
     pollingLoop();
   }
 
