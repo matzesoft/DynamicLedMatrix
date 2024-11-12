@@ -1,35 +1,45 @@
-#include <Arduino_LSM6DSOX.h>
+#include <Arduino.h>
 
-void setup() {
-  if (!IMU.begin()) {
-    Serial.println("Failed to initialize IMU!");
-    while (1);
-  }
+#include "TempReader.h"
+#include "VibrationDetection.h"
+#include "NoiceDetection.h"
+
+unsigned long lastPollingMillis = 0;
+const unsigned long pollingInterval = 500;
+
+TempReader tempReader = TempReader();
+VibrationDetection vibrationDetection = VibrationDetection();
+NoiceDetection noiceDetection = NoiceDetection();
+
+void setup(void) {
+  tempReader.begin();
+  vibrationDetection.begin();
+  noiceDetection.begin();
 }
 
 void loop() {
-  // if (IMU.temperatureAvailable())
-  // {
-  //   int temperature_deg = 0;
-  //   IMU.readTemperature(temperature_deg);
-
-  //   Serial.print("LSM6DSOX Temperature = ");
-  //   Serial.print(temperature_deg);
-  //   Serial.println(" °C");
-  // }
-
-  float x, y, z;
-
-  if (IMU.gyroscopeAvailable()) {
-    IMU.readGyroscope(x, y, z);
-    Serial.print("x: ");
-    Serial.print(x);
-    Serial.print(", y: ");
-    Serial.print(y);
-    Serial.print(", z: ");
-    Serial.println(z);
+  // Polling Loop
+  unsigned long currentMillis = millis();
+  if (currentMillis - lastPollingMillis >= pollingInterval) {
+    lastPollingMillis = currentMillis;
+    pollingLoop();
   }
 
+  // Regular Loop
+}
 
-  delay(500);
+// Loop which only runs in the specified `pollingInterval`.
+void pollingLoop() {
+  tempReader.update();
+  vibrationDetection.update();
+  noiceDetection.update();
+
+  Serial.print("Sourrounding Temperature = ");
+  Serial.print(tempReader.temp);
+  Serial.println(" °C");
+  Serial.print("Noice Detection = ");
+  Serial.println(noiceDetection.activeNoise);
+
+  Serial.print("Active Vibrations = ");
+  Serial.println(vibrationDetection.activeVib);
 }
