@@ -10,7 +10,7 @@ unsigned long lastPollingMillis = 0;
 const unsigned long pollingInterval = 500;
 
 unsigned long lastServerCommMillis = 0;
-const unsigned long serverCommInterval = 30 * 1000;
+const unsigned long serverCommInterval = 60 * 1000;
 
 // Sensor readers and controllers
 TempReader tempReader = TempReader();
