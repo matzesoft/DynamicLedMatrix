@@ -3,6 +3,7 @@
 #include "TempReader.h"
 #include "VibrationDetection.h"
 #include "NoiceDetection.h"
+#include "EmotionsManager.h"
 #include "ServerComm.h"
 
 // Loops
@@ -16,6 +17,7 @@ const unsigned long serverCommInterval = 60 * 1000;
 TempReader tempReader = TempReader();
 VibrationDetection vibrationDetection = VibrationDetection();
 NoiceDetection noiceDetection = NoiceDetection();
+EmotionsManager emotionsManager = EmotionsManager();
 ServerComm serverComm = ServerComm();
 
 /* ------------------ SETUP ------------------ */
@@ -24,6 +26,7 @@ void setup(void) {
   tempReader.begin();
   vibrationDetection.begin();
   noiceDetection.begin();
+  emotionsManager.begin();
   serverComm.begin();
 }
 
@@ -47,12 +50,13 @@ void loop() {
   // Regular Loop
 }
 
-// Loop which only runs in the specified `pollingInterval`.
-// Should be used to read data from sensors.
+// Loop which only runs in the specified `pollingInterval`. Should be used to read
+// data from sensors and update controllers based on that data.
 void pollingLoop() {
   tempReader.update();
   vibrationDetection.update();
   noiceDetection.update();
+  emotionsManager.update(noiceDetection.activeNoise, vibrationDetection.activeVib);
 
   Serial.print("Sourrounding Temperature = ");
   Serial.print(tempReader.temp);
@@ -63,6 +67,9 @@ void pollingLoop() {
 
   Serial.print("Active Vibrations = ");
   Serial.println(vibrationDetection.activeVib);
+
+  Serial.print("Emotion = ");
+  Serial.println(emotionsManager.emotion);
 }
 
 // Loop which only runs in the specified `serverCommInterval`.
