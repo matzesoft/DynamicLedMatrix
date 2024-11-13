@@ -5,6 +5,7 @@
 #include "NoiceDetection.h"
 #include "EmotionsManager.h"
 #include "ServerComm.h"
+#include "LedMatrix.h"
 
 // Loops
 unsigned long lastPollingMillis = 0;
@@ -13,12 +14,16 @@ const unsigned long pollingInterval = 500;
 unsigned long lastServerCommMillis = 0;
 const unsigned long serverCommInterval = 60 * 1000;
 
+unsigned long lastLedMatrixUpdateMillis = 0;
+const unsigned long ledMatrixUpdateInterval = 20;
+
 // Sensor readers and controllers
 TempReader tempReader = TempReader();
 VibrationDetection vibrationDetection = VibrationDetection();
 NoiceDetection noiceDetection = NoiceDetection();
 EmotionsManager emotionsManager = EmotionsManager();
 ServerComm serverComm = ServerComm();
+LedMatrix ledMatrix = LedMatrix();
 
 /* ------------------ SETUP ------------------ */
 
@@ -28,6 +33,7 @@ void setup(void) {
   noiceDetection.begin();
   emotionsManager.begin();
   serverComm.begin();
+  ledMatrix.begin();
 }
 
 /* ------------------ LOOPS ------------------ */
@@ -47,7 +53,11 @@ void loop() {
     serverCommLoop();
   }
 
-  // Regular Loop
+  // LedMatrix Update Loop
+    if (currentMillis - lastLedMatrixUpdateMillis >= ledMatrixUpdateInterval) {
+    lastLedMatrixUpdateMillis = currentMillis;
+    ledMatrixUpdateLoop();
+  }
 }
 
 // Loop which only runs in the specified `pollingInterval`. Should be used to read
@@ -76,4 +86,10 @@ void pollingLoop() {
 // Should be used sync sensor data with the server.
 void serverCommLoop() {
   serverComm.update(tempReader.temp);
+}
+
+// Loop which only runs in the specified `ledMatrixUpdateInterval`.
+// Should be used to update the pixels of the Led Matrix.
+void ledMatrixUpdateLoop() {
+  ledMatrix.update(tempReader.temp, emotionsManager.emotion);
 }
