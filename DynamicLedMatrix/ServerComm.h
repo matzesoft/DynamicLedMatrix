@@ -11,9 +11,12 @@ public:
 
   void begin();
   void update(int temperature);
+  void updateSensorData(bool activeVib, bool activeNoice);
 
 private:
   const String TemperatureSensorPath = "temperature-sensor/";
+  const String NoiceDetectionPath = "noise-detection/";
+  const String VibrationDetectionPath = "vibration-detection/";
   const String LastSyncTimestampKey = "last-sync-timestamp";
 
   unsigned long lastPushToServerMillis = 0;
