@@ -67,19 +67,6 @@ void pollingLoop() {
   vibrationDetection.update();
   noiceDetection.update();
   emotionsManager.update(noiceDetection.activeNoise, vibrationDetection.activeVib);
-
-  Serial.print("Sourrounding Temperature = ");
-  Serial.print(tempReader.temp);
-  Serial.println(" °C");
-
-  Serial.print("Noice Detection = ");
-  Serial.println(noiceDetection.activeNoise);
-
-  Serial.print("Active Vibrations = ");
-  Serial.println(vibrationDetection.activeVib);
-
-  Serial.print("Emotion = ");
-  Serial.println(emotionsManager.emotion);
 }
 
 // Loop which only runs in the specified `serverCommInterval`.
