@@ -34,7 +34,7 @@ private:
   const unsigned long HoldEmotionMillis = 10 * 1000;  // 10 sec
 
   // Defines how long to stay in NEUTRAL after there was an active emotion.
-  const unsigned long StayNeutralAfterEmotionMillis = 6 * 1000;  // 6 sec
+  const unsigned long StayNeutralAfterEmotionMillis = 3 * 1000;  // 3 sec
 
   // Defines how long to wait before a new emotion can be activated, after the previous one started.
   const unsigned long ReallowActiveEmotionsMillis = HoldEmotionMillis + StayNeutralAfterEmotionMillis;

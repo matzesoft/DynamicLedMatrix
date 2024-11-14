@@ -1,5 +1,5 @@
-#ifndef LedMatrix_h
-#define LedMatrix_h
+#ifndef TempReader_h
+#define TempReader_h
 
 class TempReader {
 public:
@@ -15,4 +15,4 @@ private:
   int internalToSourroundingTemp(int internalTemp);
 };
 
-#endif /* LedMatrix */
+#endif /* TempReader */

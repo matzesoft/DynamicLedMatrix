@@ -11,7 +11,7 @@ public:
   void update();
 
 private:
-  static constexpr float Threshold = 1.5;
+  static constexpr float Threshold = 1.1;
 
   boolean accelerationsOverThreshold(float x, float y, float z);
   void serialPrintAcclerations(float x, float y, float z);
