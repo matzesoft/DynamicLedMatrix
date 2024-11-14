@@ -14,6 +14,37 @@ void ServerComm::update(int temperature) {
   setTemperature(temperature);
 }
 
+void ServerComm::updateSensorData(bool activeVib, bool activeNoice) {
+  if (!activeNoice && !activeVib) {
+    return;
+  }
+
+  unsigned long long currentTimestamp = updateLastSyncTimestamp();
+  if (currentTimestamp <= 0) {
+    return;
+  }
+
+  String currentTimestampAsString = convertUInt64ToString(currentTimestamp);
+
+  if (activeNoice) {
+    String noiceDetectionDataPath = NoiceDetectionPath + currentTimestampAsString;
+    if (!Firebase.setBool(firebaseData, noiceDetectionDataPath, true)) {
+      Serial.print("Unable to send active noise to Firebase server:");
+      Serial.println(firebaseData.errorReason());
+      return;
+    }
+  }
+
+  if (activeVib) {
+    String vibrationDetectionDataPath = VibrationDetectionPath + currentTimestampAsString;
+    if (!Firebase.setBool(firebaseData, vibrationDetectionDataPath, true)) {
+      Serial.print("Unable to send active vib to Firebase server:");
+      Serial.println(firebaseData.errorReason());
+      return;
+    }
+  }
+}
+
 /* --------------- PRIVATE FUNCTIONS --------------- */
 
 // Uploads the temperature to the Firebase server with the current timestamp as the key.

@@ -67,6 +67,7 @@ void pollingLoop() {
   vibrationDetection.update();
   noiceDetection.update();
   emotionsManager.update(noiceDetection.activeNoise, vibrationDetection.activeVib);
+  serverComm.updateSensorData(vibrationDetection.activeVib, noiceDetection.activeNoise);
 }
 
 // Loop which only runs in the specified `serverCommInterval`.

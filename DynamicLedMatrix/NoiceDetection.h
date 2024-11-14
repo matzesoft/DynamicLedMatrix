@@ -11,7 +11,7 @@ public:
   void update();
 
 private:
-  static constexpr float Threshold = 400.0;
+  static constexpr float Threshold = 1400.0;
 
   float calculateRMS(short *samples, int numSamples);
 };
