@@ -117,6 +117,19 @@ void LedMatrix::schkub_drawEyes() {
       matrix.drawRoundRect(schkub_rightEyeTopX + 1, schkub_rightEyeTopY, SCHKUB_EYE_WIDTH, SCHKUB_EYE_HEIGHT, 1, WHITE);
       break;
 
+    case SchkubReactions::SLEEP:
+      matrix.fillRoundRect(schkub_leftEyeTopX, schkub_leftEyeTopY, SCHKUB_EYE_WIDTH, SCHKUB_EYE_HEIGHT, 1, BLACK);
+      matrix.fillRoundRect(schkub_rightEyeTopX, schkub_rightEyeTopY, SCHKUB_EYE_WIDTH, SCHKUB_EYE_HEIGHT, 1, BLACK);
+      matrix.setTextColor(WHITE);
+      matrix.setTextSize(1);
+      matrix.setCursor(schkub_centerX - SCHKUB_RADIUS - 3, schkub_centerY - 11);
+      matrix.print("Z");
+      matrix.setCursor(schkub_centerX - SCHKUB_RADIUS - 5, schkub_centerY - 3);
+      matrix.print("Z");
+      matrix.setCursor(schkub_centerX - SCHKUB_RADIUS - 7, schkub_centerY + 5);
+      matrix.print("Z");
+      break;
+
     default:
       matrix.fillRoundRect(schkub_leftEyeTopX, schkub_leftEyeTopY, SCHKUB_EYE_WIDTH, SCHKUB_EYE_HEIGHT, 1, BLACK);
       matrix.fillRoundRect(schkub_rightEyeTopX, schkub_rightEyeTopY, SCHKUB_EYE_WIDTH, SCHKUB_EYE_HEIGHT, 1, BLACK);
