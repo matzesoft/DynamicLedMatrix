@@ -37,7 +37,6 @@ private:
   const uint16_t SCHKUB_RADIUS = 8;
   const uint16_t SCHKUB_EYE_HEIGHT = 5;
   const uint16_t SCHKUB_EYE_WIDTH = 3;
-  const unsigned long SCHKUB_SLEEP_DURATION = 3600; // custom Schkub sleep duration. Needs to be longer than other reactions
   const unsigned long SCHKUB_REACTION_DURATION = 1800;
   const unsigned long SCHKUB_REACTION_MIN_INTERVAL = 4000;
   const unsigned long SCHKUB_REACTION_MAX_INTERVAL = 8000;
