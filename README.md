@@ -1,5 +1,5 @@
 # DynamicLedMatrix
-DynamicLedMatrix is an IoT student project to dynamically display sensor data on an Adafruit RGB Matrix and web dashboard.
+DynamicLedMatrix is an IoT student project to dynamically display sensor data on an RGB Matrix and web dashboard. It leverages Arduino- and Adafruit-hardware and a dashboard built with Next.js.
 
 ### Architecture
 The system contains of four components:
