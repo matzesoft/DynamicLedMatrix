@@ -2,7 +2,7 @@
 DynamicLedMatrix is an IoT student project to dynamically display sensor data on an RGB Matrix and web dashboard. It leverages Arduino- and Adafruit-hardware and a dashboard built with Next.js.
 
 ### Architecture
-The system contains of four components:
+The system contains of four main components:
 
 ```
  [ Next.js Webapp ]
@@ -27,7 +27,7 @@ The system contains of four components:
 **Next.js Webapp:** Allows to see an curve of the last temperature values. Aswell there is a bar chart showing the noice and vibration data.
 
 ## Hardware
-**Arduino:** Arduino Nano RP2040 Connect ([docs.arduino.cc](https://docs.arduino.cc/hardware/nano-rp2040-connect/)) \
+**Microcontroller:** Arduino Nano RP2040 Connect ([docs.arduino.cc](https://docs.arduino.cc/hardware/nano-rp2040-connect/)) \
 **LED Matrix:** 32x32 RGB LED Matrix Panel ([berrybase.de](https://www.berrybase.de/32x32-rgb-led-matrix-panel-5mm-raster))
 
 ### Arduino Nano RP2040 Connect with Protomatter Library
