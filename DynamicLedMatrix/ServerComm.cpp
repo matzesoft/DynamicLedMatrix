@@ -10,11 +10,11 @@ void ServerComm::begin() {
   Firebase.reconnectWiFi(true);
 }
 
-void ServerComm::update(int temperature) {
+void ServerComm::updateTempData(int temperature) {
   setTemperature(temperature);
 }
 
-void ServerComm::updateSensorData(bool activeVib, bool activeNoice) {
+void ServerComm::updateSensorData(bool activeNoice, bool activeVib) {
   if (!activeNoice && !activeVib) {
     return;
   }

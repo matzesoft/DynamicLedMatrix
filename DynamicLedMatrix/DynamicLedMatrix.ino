@@ -67,13 +67,13 @@ void pollingLoop() {
   vibrationDetection.update();
   noiceDetection.update();
   emotionsManager.update(noiceDetection.activeNoise, vibrationDetection.activeVib);
-  serverComm.updateSensorData(vibrationDetection.activeVib, noiceDetection.activeNoise);
+  serverComm.updateSensorData(noiceDetection.activeNoise, vibrationDetection.activeVib);
 }
 
 // Loop which only runs in the specified `serverCommInterval`.
 // Should be used sync sensor data with the server.
 void serverCommLoop() {
-  serverComm.update(tempReader.temp);
+  serverComm.updateTempData(tempReader.temp);
 }
 
 // Loop which only runs in the specified `ledMatrixUpdateInterval`.

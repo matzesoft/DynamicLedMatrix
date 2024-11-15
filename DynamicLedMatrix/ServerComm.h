@@ -5,13 +5,17 @@
 #include <WiFiNINA.h>
 #include "Firebase_Arduino_WiFiNINA.h"
 
+/**
+  Handles the communication via Wifi between the Firebase Server and the
+  microcontroller.
+*/
 class ServerComm {
 public:
   ServerComm();
 
   void begin();
-  void update(int temperature);
-  void updateSensorData(bool activeVib, bool activeNoice);
+  void updateTempData(int temperature);
+  void updateSensorData(bool activeNoice, bool activeVib);
 
 private:
   const String TemperatureSensorPath = "temperature-sensor/";
@@ -23,6 +27,8 @@ private:
   FirebaseData firebaseData;
 
   int setTemperature(int value);
+  int setNoiceDetectionActive(unsigned long long timestamp);
+  int setVibDetectionActive(unsigned long long timestamp);
   unsigned long long updateLastSyncTimestamp();
   String convertUInt64ToString(unsigned long long value);
 };

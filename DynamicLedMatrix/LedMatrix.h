@@ -5,6 +5,10 @@
 #include <Adafruit_Protomatter.h>
 #include "EmotionsManager.h"
 
+/**
+  Manages the content drawn on the Led Matrix, based on the current emotion
+  from the `EmotionManager`.
+*/
 class LedMatrix {
 public:
   LedMatrix();

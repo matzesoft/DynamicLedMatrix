@@ -40,7 +40,6 @@ void NoiceDetection::begin() {
 }
 
 void NoiceDetection::update() {
-
   if (samplesRead) {
     float averageLoudness = calculateRMS(sampleBuffer, samplesRead);
     activeNoise = (averageLoudness > Threshold);

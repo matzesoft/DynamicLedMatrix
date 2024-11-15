@@ -11,6 +11,9 @@ enum Emotion {
   SLEEP
 };
 
+/**
+  Uses the sensor data to define the current emotion.
+*/
 class EmotionsManager {
 public:
   Emotion emotion = Emotion::NEUTRAL;
