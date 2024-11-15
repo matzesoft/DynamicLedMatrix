@@ -12,6 +12,16 @@ void EmotionsManager::begin() {
 void EmotionsManager::update(bool activeNoise, bool activeVibration) {
   unsigned long currentMillis = millis();
 
+    if (activeNoise || activeVibration) {
+        lastActivityMillis = currentMillis;
+    }
+    
+    // Enter sleep state after 3 minutes of inactivity
+    if (currentMillis - lastActivityMillis >= InactivityBeforeSleepMillis) { 
+        emotion = Emotion::SLEEP;
+        return;
+    }
+
   if (currentMillis - lastEmotionChangeMillis >= ReallowActiveEmotionsMillis) {
     checkForActiveEmotion(activeNoise, activeVibration);
 

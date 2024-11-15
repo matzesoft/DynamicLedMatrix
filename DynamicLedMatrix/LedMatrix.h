@@ -61,6 +61,9 @@ private:
 
   // SHAKY matrix variables
   void shaky_drawEmotion();
+
+  // SLEEP matrix variables
+  void sleep_drawEmotion();
 };
 
 #endif /* LedMatrix */
