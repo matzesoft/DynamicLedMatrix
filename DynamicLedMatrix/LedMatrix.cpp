@@ -66,6 +66,9 @@ void LedMatrix::update(int temperature, Emotion emotion) {
     case Emotion::SHAKY:
       shaky_drawEmotion();
       break;
+    case Emotion::SLEEP:
+      sleep_drawEmotion();
+      break;
   }
 
   matrix.show();
@@ -115,19 +118,6 @@ void LedMatrix::schkub_drawEyes() {
       matrix.fillRoundRect(schkub_rightEyeTopX + 1, schkub_rightEyeTopY, SCHKUB_EYE_WIDTH, SCHKUB_EYE_HEIGHT, 1, BLACK);
       matrix.drawRoundRect(schkub_leftEyeTopX + 1, schkub_leftEyeTopY, SCHKUB_EYE_WIDTH, SCHKUB_EYE_HEIGHT, 1, WHITE);
       matrix.drawRoundRect(schkub_rightEyeTopX + 1, schkub_rightEyeTopY, SCHKUB_EYE_WIDTH, SCHKUB_EYE_HEIGHT, 1, WHITE);
-      break;
-
-    case SchkubReactions::SLEEP:
-      matrix.fillRoundRect(schkub_leftEyeTopX, schkub_leftEyeTopY, SCHKUB_EYE_WIDTH, SCHKUB_EYE_HEIGHT, 1, BLACK);
-      matrix.fillRoundRect(schkub_rightEyeTopX, schkub_rightEyeTopY, SCHKUB_EYE_WIDTH, SCHKUB_EYE_HEIGHT, 1, BLACK);
-      matrix.setTextColor(WHITE);
-      matrix.setTextSize(1);
-      matrix.setCursor(schkub_centerX - SCHKUB_RADIUS - 3, schkub_centerY - 11);
-      matrix.print("Z");
-      matrix.setCursor(schkub_centerX - SCHKUB_RADIUS - 5, schkub_centerY - 3);
-      matrix.print("Z");
-      matrix.setCursor(schkub_centerX - SCHKUB_RADIUS - 7, schkub_centerY + 5);
-      matrix.print("Z");
       break;
 
     default:
@@ -180,4 +170,26 @@ void LedMatrix::shaky_drawEmotion() {
 
   matrix.drawLine(schkub_centerX - 3, schkub_centerY - SCHKUB_RADIUS + 1 - 3, schkub_centerX + 3, schkub_centerY - SCHKUB_RADIUS + 1 + 3, RED);
   matrix.drawLine(schkub_centerX - 3, schkub_centerY - SCHKUB_RADIUS + 1 + 3, schkub_centerX + 3, schkub_centerY - SCHKUB_RADIUS + 1 - 3, RED);
+}
+
+void LedMatrix::sleep_drawEmotion() {
+  matrix.setTextColor(WHITE);
+  matrix.setTextSize(1);
+  matrix.setCursor(0, 0);
+  matrix.print("SLEEP");
+
+  matrix.fillCircle(schkub_centerX, schkub_centerY, SCHKUB_RADIUS, BLUE);
+  matrix.fillRoundRect(schkub_leftEyeTopX, schkub_leftEyeTopY, SCHKUB_EYE_WIDTH, SCHKUB_EYE_HEIGHT, 1, WHITE);
+  matrix.fillRoundRect(schkub_rightEyeTopX, schkub_rightEyeTopY, SCHKUB_EYE_WIDTH, SCHKUB_EYE_HEIGHT, 1, WHITE);
+
+  matrix.fillRoundRect(schkub_leftEyeTopX, schkub_leftEyeTopY, SCHKUB_EYE_WIDTH, SCHKUB_EYE_HEIGHT, 1, WHITE);
+  matrix.fillRoundRect(schkub_rightEyeTopX, schkub_rightEyeTopY, SCHKUB_EYE_WIDTH, SCHKUB_EYE_HEIGHT, 1, WHITE);
+  matrix.setTextColor(WHITE);
+  matrix.setTextSize(1);
+  matrix.setCursor(schkub_centerX - SCHKUB_RADIUS - 3, schkub_centerY - 11);
+  matrix.print("Z");
+  matrix.setCursor(schkub_centerX - SCHKUB_RADIUS - 5, schkub_centerY - 3);
+  matrix.print("Z");
+  matrix.setCursor(schkub_centerX - SCHKUB_RADIUS - 7, schkub_centerY + 5);
+  matrix.print("Z");
 }

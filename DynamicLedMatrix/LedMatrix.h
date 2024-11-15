@@ -29,10 +29,9 @@ private:
     NONE,
     BLINK_EYES,
     LOOK_LEFT,
-    LOOK_RIGHT,
-    SLEEP
+    LOOK_RIGHT
   };
-  const uint8_t SCHKUB_REACTIONS_COUNT = 5;
+  const uint8_t SCHKUB_REACTIONS_COUNT = 4;
 
   const uint16_t SCHKUB_RADIUS = 8;
   const uint16_t SCHKUB_EYE_HEIGHT = 5;
@@ -62,6 +61,9 @@ private:
 
   // SHAKY matrix variables
   void shaky_drawEmotion();
+
+  // SLEEP matrix variables
+  void sleep_drawEmotion();
 };
 
 #endif /* LedMatrix */

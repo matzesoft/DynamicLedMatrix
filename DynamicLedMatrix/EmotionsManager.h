@@ -7,7 +7,8 @@ enum Emotion {
 
   // Active emotions
   TOO_LOUD,
-  SHAKY
+  SHAKY,
+  SLEEP
 };
 
 class EmotionsManager {
@@ -39,10 +40,15 @@ private:
   // Defines how long to wait before a new emotion can be activated, after the previous one started.
   const unsigned long ReallowActiveEmotionsMillis = HoldEmotionMillis + StayNeutralAfterEmotionMillis;
 
-  // The millis value since the emotion was changed from NEUTRAL to another one.
+  // New sleep timing constant
+  const unsigned long InactivityBeforeSleepMillis = 180 * 1000;  // 3 minutes
+
+  // Timing variables
   unsigned long lastEmotionChangeMillis = 0;
+  unsigned long lastActivityMillis = 0;
 
   void checkForActiveEmotion(bool activeNoise, bool activeVibration);
+  void checkForSleep();
   Emotion getEmotionBasedOnSensorData(bool activeNoise, bool activeVibration);
 };
 
